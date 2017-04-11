@@ -1,0 +1,14 @@
+
+.grid {
+
+}
+
+.title {
+    align-content: center
+}
+
+#table {
+    margin-left: 30%; 
+    width: 100px; 
+    border: 1px;
+}

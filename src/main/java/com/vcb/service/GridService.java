@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class GridService {
-
+public class GridService
+{
     private GridEntity gridEntity;
     private PlayerXEntity playerXEntity;
     private PlayerOEntity playerOEntity;
@@ -23,13 +23,12 @@ public class GridService {
     private final String getX = "" + playerXEntity + playerXEntity + playerXEntity;
     private final String getO = "" + playerOEntity + playerOEntity + playerOEntity;
 
-    public boolean winConV(char[] getGrid) {
+    public boolean winConV() {
         String get0 = "";
         String get1 = "";
         String get2 = "";
-        getGrid = gridEntity.getGrid();
+        char[] getGrid = gridEntity.getGrid();
         for (int i = 0; i < getGrid.length; i++) {
-
             switch (i % 3) {
                 case 0:
                     get0 += getGrid[i];
@@ -56,11 +55,11 @@ public class GridService {
         return false;
     }
 
-    public boolean winConH(char[] getGrid) {
+    public boolean winConH() {
         String get0 = "";
         String get1 = "";
         String get2 = "";
-        getGrid = gridEntity.getGrid();
+        char[] getGrid = gridEntity.getGrid();
         for (int i = 0; i < getGrid.length; i++) {
             switch (i / 3) {
                 case 0:
@@ -88,10 +87,10 @@ public class GridService {
         return false;
     }
 
-    public boolean winConD(char[] getGrid) {
+    public boolean winConD() {
         String get0 = "";
         String get1 = "";
-        getGrid = gridEntity.getGrid();
+        char[] getGrid = gridEntity.getGrid();
         for (int i = 0; i < getGrid.length; i += 2) {
             if (i % 4 == 0) {
                 get0 += getGrid[i];
@@ -99,11 +98,27 @@ public class GridService {
                     return true;
                 }
             }
-            if (i / 2 == 1 || i / 2 == 2 || i / 2 == 3) {
-                get1 += getGrid[i];
-                if (get1.equalsIgnoreCase(getX) || get1.equalsIgnoreCase(getO)) {
-                    return true;
-                }
+            switch (i / 2) {
+                case 1:
+                    get1 += getGrid[i];
+                    if (get1.equalsIgnoreCase(getX) || get1.equalsIgnoreCase(getO)) {
+                        return true;
+                    }
+                    break;
+                case 2:
+                    get1 += getGrid[i];
+                    if (get1.equalsIgnoreCase(getX) || get1.equalsIgnoreCase(getO)) {
+                        return true;
+                    }
+                    break;
+                case 3:
+                    get1 += getGrid[i];
+                    if (get1.equalsIgnoreCase(getX) || get1.equalsIgnoreCase(getO)) {
+                        return true;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         return false;
